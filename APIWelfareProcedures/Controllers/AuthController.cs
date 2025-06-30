@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using APIWelfareProcedures.Models;
-using System.Security.Claims;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json.Nodes;
+using Microsoft.AspNetCore.Mvc;
+using APIWelfareProcedures.Models;
 using Newtonsoft.Json;
 
 namespace APIWelfareProcedures.Controllers
