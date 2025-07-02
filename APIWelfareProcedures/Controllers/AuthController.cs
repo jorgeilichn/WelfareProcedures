@@ -1,7 +1,9 @@
-﻿using System.Net.Http.Headers;
-using System.Text;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using APIWelfareProcedures.Models;
+using System.Net.Http.Headers;
+using System.Text;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace APIWelfareProcedures.Controllers
@@ -11,41 +13,59 @@ namespace APIWelfareProcedures.Controllers
     public class AuthController : ControllerBase
     {
         private RequestPostBodyParameters requestBody;
+        private AuthSettings authSettings;
         private string post_uri, bearerToken;
+        private HttpClient post_client, get_client;
         
-        public AuthController(IConfiguration config)
+        public AuthController(IOptionsSnapshot<RequestPostBodyParameters> configBody, 
+            IOptionsSnapshot<AuthSettings> configAuth, 
+            IHttpClientFactory clientFactory)
         {
-            post_uri = config.GetSection("AuthSettings").GetSection("post_uri").ToString();
-            bearerToken = config.GetSection("AuthSettings").GetSection("bearerToken").ToString();
-            requestBody = new RequestPostBodyParameters()
-            {
-                grant_type = config.GetSection("RequestPostBodyParameters").GetSection("grant_type").ToString(),
-                client_id = config.GetSection("RequestPostBodyParameters").GetSection("client_id").ToString(),
-                client_secret = config.GetSection("RequestPostBodyParameters").GetSection("client_secret").ToString(),
-                scope = config.GetSection("RequestPostBodyParameters").GetSection("scope").ToString(),
-                username = config.GetSection("RequestPostBodyParameters").GetSection("username").ToString(),
-                password = config.GetSection("RequestPostBodyParameters").GetSection("password").ToString(),
-            };
+            authSettings = configAuth.Value;
+            post_uri = authSettings.post_uri;
+            bearerToken = authSettings.bearerToken;
+            requestBody = configBody.Value;
+            post_client = clientFactory.CreateClient("welfare_client");
+            get_client = clientFactory.CreateClient("welfare_client");
+            
         }
 
         [HttpPost]
         [Route("getaccesstoken")]
-        public async Task<ActionResult<ApiResponse>> Post()
+        public async Task<ActionResult<ResponsePostParameters>> Post()
         {
-            using (HttpClient client = new HttpClient())
+            try
             {
-                StringContent jsonContent = new StringContent(requestBody.ToString(), Encoding.UTF8, "application/json");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-                HttpResponseMessage result = await client.PostAsync(post_uri, jsonContent);
-                if (!result.IsSuccessStatusCode)
+                post_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                post_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
+                
+                var serializedRequestBody = JsonConvert.SerializeObject(requestBody);
+                var requestContent = new HttpRequestMessage(HttpMethod.Post, post_uri);
+                requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+                requestContent.Content = new StringContent(serializedRequestBody, Encoding.UTF8, "application/json");
+                var result = await post_client.SendAsync(requestContent);
+                if (result.StatusCode == HttpStatusCode.NotFound )
                 {
-                    throw new ArgumentException("Algo ha ido mal...");
+                    return NotFound(result.RequestMessage.RequestUri.ToString());
                 }
-    
-                string jsonResult = await result.Content.ReadAsStringAsync();
-                ApiResponse response = JsonConvert.DeserializeObject<ApiResponse>(jsonResult);
+                else if (result.StatusCode == HttpStatusCode.BadRequest)
+                {
+                    return BadRequest(result.RequestMessage.RequestUri.ToString());
+                }
+                else if (!result.IsSuccessStatusCode)
+                {
+                    return BadRequest(result.RequestMessage.RequestUri.ToString());
+                }
+
+                var jsonResult = await result.Content.ReadAsStringAsync();
+                ResponsePostParameters response = JsonConvert.DeserializeObject<ResponsePostParameters>(jsonResult);
                 return Ok(response);
             }
+            catch ( HttpRequestException ex)
+            {
+                throw new Exception(ex.Message); 
+            }
+            
         }
     }
 }

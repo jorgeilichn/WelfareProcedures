@@ -1,4 +1,6 @@
-﻿namespace APIWelfareProcedures.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace APIWelfareProcedures.Models;
 
 public record ResponsePostParameters
 {
