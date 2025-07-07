@@ -9,12 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97cd0eb7-9411-441d-85f9-24dad4a24dbe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponseGetParameter.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/APIWelfareProcedures.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/APIWelfareProcedures.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Models/AuthSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/AuthSettings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Models/RequestPostBodyParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/RequestPostBodyParameters.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponsePostParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponsePostParameters.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,7 +36,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/jorgeilichn/WelfareProcedures.git&quot;,
-    &quot;accountId&quot;: &quot;77811029-d8ec-4b06-99c1-aca3eba10c6f&quot;
+    &quot;accountId&quot;: &quot;4196db40-9bd6-4570-be09-ecfed053f5fe&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
@@ -54,23 +53,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.APIWelfareProcedures.executor&quot;: &quot;Debug&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.APIWelfareProcedures.executor": "Debug",
+    ".NET Launch Settings Profile.APIWelfareProcedures:https.executor": "Run",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected=".NET Launch Settings Profile.APIWelfareProcedures">
+}]]></component>
+  <component name="RunManager" selected=".NET Launch Settings Profile.APIWelfareProcedures:https">
     <configuration name="APIWelfareProcedures" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/APIWelfareProcedures/APIWelfareProcedures.csproj" />
       <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
@@ -101,6 +102,26 @@
         <option name="Build" />
       </method>
     </configuration>
+    <configuration name="APIWelfareProcedures:https" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
+      <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/APIWelfareProcedures/APIWelfareProcedures.csproj" />
+      <option name="LAUNCH_PROFILE_TFM" value="net6.0" />
+      <option name="LAUNCH_PROFILE_NAME" value="APIWelfareProcedures" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="GENERATE_APPLICATIONHOST_CONFIG" value="1" />
+      <option name="SHOW_IIS_EXPRESS_OUTPUT" value="0" />
+      <option name="SEND_DEBUG_REQUEST" value="1" />
+      <option name="ADDITIONAL_IIS_EXPRESS_ARGUMENTS" value="" />
+      <method v="2">
+        <option name="Build" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue=".NET Launch Settings Profile.APIWelfareProcedures" />
+      <item itemvalue=".NET Launch Settings Profile.APIWelfareProcedures:https" />
+      <item itemvalue=".NET Launch Settings Profile.APIWelfareProcedures: IIS Express" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -115,6 +136,9 @@
       <workItem from="1751302695324" duration="722000" />
       <workItem from="1751303428694" duration="8461000" />
       <workItem from="1751466080723" duration="2231000" />
+      <workItem from="1751647679625" duration="179000" />
+      <workItem from="1751681416090" duration="5807000" />
+      <workItem from="1751750377457" duration="10432000" />
     </task>
     <task id="LOCAL-00001" summary="WelfareProcedures - APIWelfareProcedures (primera encomienda)">
       <option name="closed" value="true" />
@@ -145,89 +169,5 @@
     <MESSAGE value="WelfareProcedures - APIWelfareProcedures (primera encomienda)" />
     <MESSAGE value="WelfareProcedures - APIWelfareProcedures (Primera encomienda)" />
     <option name="LAST_COMMIT_MESSAGE" value="WelfareProcedures - APIWelfareProcedures (Primera encomienda)" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs</url>
-          <line>46</line>
-          <properties documentPath="D:\JORGE.NODA\DESARROLLO\RiderProjects\WelfareProcedures\APIWelfareProcedures\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Post'">
-            <startOffsets>
-              <option value="2023" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2073" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs</url>
-          <line>48</line>
-          <properties documentPath="D:\JORGE.NODA\DESARROLLO\RiderProjects\WelfareProcedures\APIWelfareProcedures\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Post'">
-            <startOffsets>
-              <option value="2112" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2173" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs</url>
-          <line>50</line>
-          <properties documentPath="D:\JORGE.NODA\DESARROLLO\RiderProjects\WelfareProcedures\APIWelfareProcedures\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Post'">
-            <startOffsets>
-              <option value="2213" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2264" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs</url>
-          <line>52</line>
-          <properties documentPath="D:\JORGE.NODA\DESARROLLO\RiderProjects\WelfareProcedures\APIWelfareProcedures\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Post'">
-            <startOffsets>
-              <option value="2303" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2366" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs</url>
-          <line>54</line>
-          <properties documentPath="D:\JORGE.NODA\DESARROLLO\RiderProjects\WelfareProcedures\APIWelfareProcedures\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Post'">
-            <startOffsets>
-              <option value="2406" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2438" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs</url>
-          <line>56</line>
-          <properties documentPath="D:\JORGE.NODA\DESARROLLO\RiderProjects\WelfareProcedures\APIWelfareProcedures\Controllers\AuthController.cs" containingFunctionPresentation="Method 'Post'">
-            <startOffsets>
-              <option value="2477" />
-            </startOffsets>
-            <endOffsets>
-              <option value="2540" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
