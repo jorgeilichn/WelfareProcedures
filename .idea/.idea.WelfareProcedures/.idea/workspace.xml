@@ -9,12 +9,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97cd0eb7-9411-441d-85f9-24dad4a24dbe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponseGetParameter.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponseGetParameters.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/APIWelfareProcedures.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/APIWelfareProcedures.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Models/AuthSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/AuthSettings.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponseGetParameter.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponsePostParameters.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/ResponsePostParameters.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +27,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -36,12 +38,14 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/jorgeilichn/WelfareProcedures.git&quot;,
-    &quot;accountId&quot;: &quot;4196db40-9bd6-4570-be09-ecfed053f5fe&quot;
+    &quot;accountId&quot;: &quot;77811029-d8ec-4b06-99c1-aca3eba10c6f&quot;
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/e801b4e36bf641bb93e9e892c3c8fe0ba24f20/ed/b690d124/Monitor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/f4708639776589f5ac2739f6fcbfc67343b1f9dac51cc1dbfdb003eef77cc1c/Monitor.CoreCLR.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock://diff.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -56,7 +60,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     ".NET Launch Settings Profile.APIWelfareProcedures.executor": "Debug",
-    ".NET Launch Settings Profile.APIWelfareProcedures:https.executor": "Run",
+    ".NET Launch Settings Profile.APIWelfareProcedures:https.executor": "Debug",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -67,7 +71,6 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -136,9 +139,7 @@
       <workItem from="1751302695324" duration="722000" />
       <workItem from="1751303428694" duration="8461000" />
       <workItem from="1751466080723" duration="2231000" />
-      <workItem from="1751647679625" duration="179000" />
-      <workItem from="1751681416090" duration="5807000" />
-      <workItem from="1751750377457" duration="10432000" />
+      <workItem from="1751996706924" duration="1887000" />
     </task>
     <task id="LOCAL-00001" summary="WelfareProcedures - APIWelfareProcedures (primera encomienda)">
       <option name="closed" value="true" />
@@ -164,6 +165,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="WelfareProcedures - APIWelfareProcedures (primera encomienda)" />

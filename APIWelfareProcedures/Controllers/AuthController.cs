@@ -1,11 +1,10 @@
-﻿using System.Net;
+﻿﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using APIWelfareProcedures.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
-using RestSharp;
 
 namespace APIWelfareProcedures.Controllers
 {
@@ -16,7 +15,7 @@ namespace APIWelfareProcedures.Controllers
         private RequestPostBodyParameters requestBody; 
         private AuthSettings authSettings;
         private HttpClient post_client, get_client;
-        private string accessToken = string.Empty;
+        private string accessToken = String.Empty;
         
         public AuthController(IOptionsSnapshot<RequestPostBodyParameters> configBody, 
             IOptionsSnapshot<AuthSettings> configAuth, 
@@ -47,38 +46,35 @@ namespace APIWelfareProcedures.Controllers
             {
                 var jsonResult = await result.Content.ReadAsStringAsync();
                 ResponsePostParameters response = JsonConvert.DeserializeObject<ResponsePostParameters>(jsonResult);
-                this.accessToken = response.access_token;
+                accessToken = response.access_token;
                 return Ok(response);
             }
             else
             {
-                return BadRequest(result.ReasonPhrase + ": " + result.RequestMessage.RequestUri.ToString());
+                return BadRequest(result.ReasonPhrase + ": " + result.RequestMessage.RequestUri);
             }
         }
         
         [HttpGet]
         [Route("getprocedures")]
-        public async Task<ActionResult<ResponseGetParameter>> Get([FromQuery]int start, [FromQuery]int limit)
+        public async Task<ActionResult<ResponseGetParameters>> Get([FromQuery]int start, [FromQuery]int limit)
         {
-            string get_uri = authSettings.get_uri;
-            //string base_uri = authSettings.base_uri + "/";
-            //string url = base_uri + get_uri + "?start=" + start + "&limit=" + limit;
+            string get_uri = authSettings.get_uri+ "?start=" + start + "&limit=" + limit;
             get_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            //get_client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", this.accessToken);
             get_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
             var requestContent = new HttpRequestMessage(HttpMethod.Get, get_uri);
-            requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.accessToken); ;
+            requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken); ;
             var result = await get_client.SendAsync(requestContent);
             //var response = await get_client.GetAsync(url);
             if (result.IsSuccessStatusCode)
             {
                 var responseContent = await result.Content.ReadAsStringAsync();
-                ResponseGetParameter response = JsonConvert.DeserializeObject<ResponseGetParameter>(responseContent);
+                ResponseGetParameters response = JsonConvert.DeserializeObject<ResponseGetParameters>(responseContent);
                 return Ok(response);
             }
             else
             {
-                return BadRequest(result.ReasonPhrase + ": " + result.ReasonPhrase);
+                return BadRequest(result.ReasonPhrase + ": " + result.RequestMessage.RequestUri);
             }
         }
     }

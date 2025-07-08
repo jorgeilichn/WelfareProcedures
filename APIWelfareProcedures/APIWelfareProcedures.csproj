@@ -8,8 +8,6 @@
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-        <PackageReference Include="RestClient" Version="3.1024.23771" />
-        <PackageReference Include="RestSharp" Version="112.1.1-alpha.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0"/>
     </ItemGroup>
 
