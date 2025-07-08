@@ -51,7 +51,7 @@ namespace APIWelfareProcedures.Controllers
             }
             else
             {
-                return BadRequest(result.ReasonPhrase + ": " + result.RequestMessage.RequestUri);
+                return BadRequest("Error: " + result.ReasonPhrase + "\nURL: " + result.RequestMessage.RequestUri);
             }
         }
         
@@ -74,7 +74,7 @@ namespace APIWelfareProcedures.Controllers
             }
             else
             {
-                return BadRequest(result.ReasonPhrase + ": " + result.RequestMessage.RequestUri);
+                return BadRequest("Error: " + result.ReasonPhrase + "\nURL: " + result.RequestMessage.RequestUri);
             }
         }
     }
