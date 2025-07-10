@@ -108,6 +108,7 @@ namespace APIWelfareProcedures.Controllers
         }
 
         [HttpGet]
+        [Route("listprocedures")]
         public async Task<ActionResult<APIResponse>> GetWelfareProcedures([FromQuery] int start, int limit)
         {
             if (limit <= 0 || limit < start || start < 0)

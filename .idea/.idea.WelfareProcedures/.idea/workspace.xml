@@ -8,7 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97cd0eb7-9411-441d-85f9-24dad4a24dbe" name="Changes" comment="APIWelfareProcedures - Respuestas estandarizadas de tipo APIResponse">
+    <list default="true" id="97cd0eb7-9411-441d-85f9-24dad4a24dbe" name="Changes" comment="APIWelfareProcedures - Nuevos métofos privados que devuelven BadRequest">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" afterDir="false" />
     </list>
@@ -185,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1752160272451</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="APIWelfareProcedures - Nuevos métofos privados que devuelven BadRequest">
+      <option name="closed" value="true" />
+      <created>1752177522236</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1752177522236</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -212,6 +220,7 @@
     <MESSAGE value="APIWelfareProcedures - Resuelto detalles del error" />
     <MESSAGE value="APIWelfareProcedures - End Point GetWelfareProcedures" />
     <MESSAGE value="APIWelfareProcedures - Respuestas estandarizadas de tipo APIResponse" />
-    <option name="LAST_COMMIT_MESSAGE" value="APIWelfareProcedures - Respuestas estandarizadas de tipo APIResponse" />
+    <MESSAGE value="APIWelfareProcedures - Nuevos métofos privados que devuelven BadRequest" />
+    <option name="LAST_COMMIT_MESSAGE" value="APIWelfareProcedures - Nuevos métofos privados que devuelven BadRequest" />
   </component>
 </project>
