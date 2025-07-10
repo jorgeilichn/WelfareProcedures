@@ -8,7 +8,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97cd0eb7-9411-441d-85f9-24dad4a24dbe" name="Changes" comment="APIWelfareProcedures - EndPoint HttpPost y HttpGet">
+    <list default="true" id="97cd0eb7-9411-441d-85f9-24dad4a24dbe" name="Changes" comment="APIWelfareProcedures - Resuelto detalles del error">
+      <change afterPath="$PROJECT_DIR$/APIWelfareProcedures/Models/APIResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WelfareProcedures/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/APIWelfareProcedures/Controllers/AuthController.cs" afterDir="false" />
     </list>
@@ -134,7 +135,8 @@
       <workItem from="1751302695324" duration="722000" />
       <workItem from="1751303428694" duration="8461000" />
       <workItem from="1751466080723" duration="2231000" />
-      <workItem from="1751996706924" duration="2449000" />
+      <workItem from="1751996706924" duration="5894000" />
+      <workItem from="1752096047096" duration="2800000" />
     </task>
     <task id="LOCAL-00001" summary="WelfareProcedures - APIWelfareProcedures (primera encomienda)">
       <option name="closed" value="true" />
@@ -160,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1751998690117</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="APIWelfareProcedures - Resuelto detalles del error">
+      <option name="closed" value="true" />
+      <created>1751999323915</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1751999323915</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +194,7 @@
     <MESSAGE value="WelfareProcedures - APIWelfareProcedures (primera encomienda)" />
     <MESSAGE value="WelfareProcedures - APIWelfareProcedures (Primera encomienda)" />
     <MESSAGE value="APIWelfareProcedures - EndPoint HttpPost y HttpGet" />
-    <option name="LAST_COMMIT_MESSAGE" value="APIWelfareProcedures - EndPoint HttpPost y HttpGet" />
+    <MESSAGE value="APIWelfareProcedures - Resuelto detalles del error" />
+    <option name="LAST_COMMIT_MESSAGE" value="APIWelfareProcedures - Resuelto detalles del error" />
   </component>
 </project>

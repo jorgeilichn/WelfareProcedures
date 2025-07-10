@@ -4,6 +4,7 @@ using System.Text;
 using APIWelfareProcedures.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Extensions;
 using Newtonsoft.Json;
 
 namespace APIWelfareProcedures.Controllers
@@ -25,7 +26,6 @@ namespace APIWelfareProcedures.Controllers
             requestBody = configBody.Value;
             post_client = clientFactory.CreateClient("welfare_client");
             get_client = clientFactory.CreateClient("welfare_client");
-            
         }
 
         [HttpPost]
@@ -51,7 +51,8 @@ namespace APIWelfareProcedures.Controllers
             }
             else
             {
-                return BadRequest("Error: " + result.ReasonPhrase + "\nURL: " + result.RequestMessage.RequestUri);
+                return BadRequest("Error: " + result.ReasonPhrase + 
+                                  "\nURL: " + result.RequestMessage.RequestUri);
             }
         }
         
@@ -65,7 +66,6 @@ namespace APIWelfareProcedures.Controllers
             var requestContent = new HttpRequestMessage(HttpMethod.Get, get_uri);
             requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken); ;
             var result = await get_client.SendAsync(requestContent);
-            //var response = await get_client.GetAsync(url);
             if (result.IsSuccessStatusCode)
             {
                 var responseContent = await result.Content.ReadAsStringAsync();
@@ -74,7 +74,52 @@ namespace APIWelfareProcedures.Controllers
             }
             else
             {
-                return BadRequest("Error: " + result.ReasonPhrase + "\nURL: " + result.RequestMessage.RequestUri);
+                return BadRequest("Error: " + result.ReasonPhrase + 
+                                  "\nURL: " + result.RequestMessage.RequestUri);
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<ResponseGetParameters>> GetWelfareProcedures([FromQuery] int start,
+            [FromQuery] int limit)
+        {
+            string post_uri = authSettings.post_uri;
+            string bearerToken = authSettings.bearerToken;
+            post_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            post_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
+                
+            var serializedRequestBody = JsonConvert.SerializeObject(requestBody);
+            var requestPostContent = new HttpRequestMessage(HttpMethod.Post, post_uri);
+            requestPostContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
+            requestPostContent.Content = new StringContent(serializedRequestBody, Encoding.UTF8, "application/json");
+            var postResult = await post_client.SendAsync(requestPostContent);
+            if (postResult.IsSuccessStatusCode)
+            {
+                var jsonPostResult = await postResult.Content.ReadAsStringAsync();
+                ResponsePostParameters postResponse = JsonConvert.DeserializeObject<ResponsePostParameters>(jsonPostResult);
+                accessToken = postResponse.access_token;
+                string get_uri = authSettings.get_uri+ "?start=" + start + "&limit=" + limit;
+                get_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                get_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
+                var requestContent = new HttpRequestMessage(HttpMethod.Get, get_uri);
+                requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken); ;
+                var result = await get_client.SendAsync(requestContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    var jsonResult = await result.Content.ReadAsStringAsync();
+                    ResponseGetParameters response = JsonConvert.DeserializeObject<ResponseGetParameters>(jsonResult);
+                    return Ok(response);
+                }
+                else
+                {
+                    return BadRequest("Error: " + result.ReasonPhrase + 
+                                      "\nURL: " + result.RequestMessage.RequestUri);
+                }
+            }
+            else
+            {
+                return BadRequest("Error: " + postResult.ReasonPhrase + 
+                                  "\nURL: " + postResult.RequestMessage.RequestUri);
             }
         }
     }
