@@ -17,6 +17,7 @@ namespace APIWelfareProcedures.Controllers
         private AuthSettings authSettings;
         private HttpClient post_client, get_client;
         private string accessToken = String.Empty;
+        protected APIResponse _response;
         
         public AuthController(IOptionsSnapshot<RequestPostBodyParameters> configBody, 
             IOptionsSnapshot<AuthSettings> configAuth, 
@@ -26,11 +27,12 @@ namespace APIWelfareProcedures.Controllers
             requestBody = configBody.Value;
             post_client = clientFactory.CreateClient("welfare_client");
             get_client = clientFactory.CreateClient("welfare_client");
+            _response = new APIResponse();
         }
 
         [HttpPost]
         [Route("getaccesstoken")]
-        public async Task<ActionResult<ResponsePostParameters>> Post()
+        public async Task<ActionResult<APIResponse>> Post()
         {
             string post_uri = authSettings.post_uri;
             string bearerToken = authSettings.bearerToken;
@@ -47,18 +49,24 @@ namespace APIWelfareProcedures.Controllers
                 var jsonResult = await result.Content.ReadAsStringAsync();
                 ResponsePostParameters response = JsonConvert.DeserializeObject<ResponsePostParameters>(jsonResult);
                 accessToken = response.access_token;
-                return Ok(response);
+                _response.statusCode = HttpStatusCode.OK;
+                _response.Result = response;
+                return Ok(_response);
             }
             else
             {
-                return BadRequest("Error: " + result.ReasonPhrase + 
-                                  "\nURL: " + result.RequestMessage.RequestUri);
+                _response.statusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.Result = null;
+                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase + 
+                                            " ==> URL: " + result.RequestMessage.RequestUri);
+                return BadRequest(_response);
             }
         }
         
         [HttpGet]
         [Route("getprocedures")]
-        public async Task<ActionResult<ResponseGetParameters>> Get([FromQuery]int start, [FromQuery]int limit)
+        public async Task<ActionResult<APIResponse>> Get([FromQuery]int start, [FromQuery]int limit)
         {
             string get_uri = authSettings.get_uri+ "?start=" + start + "&limit=" + limit;
             get_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -70,18 +78,23 @@ namespace APIWelfareProcedures.Controllers
             {
                 var responseContent = await result.Content.ReadAsStringAsync();
                 ResponseGetParameters response = JsonConvert.DeserializeObject<ResponseGetParameters>(responseContent);
-                return Ok(response);
+                _response.statusCode = HttpStatusCode.OK;
+                _response.Result = response;
+                return Ok(_response);
             }
             else
             {
-                return BadRequest("Error: " + result.ReasonPhrase + 
-                                  "\nURL: " + result.RequestMessage.RequestUri);
+                _response.statusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.Result = null;
+                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase + 
+                                            " ==> URL: " + result.RequestMessage.RequestUri);
+                return BadRequest(_response);
             }
         }
 
         [HttpGet]
-        public async Task<ActionResult<ResponseGetParameters>> GetWelfareProcedures([FromQuery] int start,
-            [FromQuery] int limit)
+        public async Task<ActionResult<APIResponse>> GetWelfareProcedures([FromQuery] int start, int limit)
         {
             string post_uri = authSettings.post_uri;
             string bearerToken = authSettings.bearerToken;
@@ -108,18 +121,28 @@ namespace APIWelfareProcedures.Controllers
                 {
                     var jsonResult = await result.Content.ReadAsStringAsync();
                     ResponseGetParameters response = JsonConvert.DeserializeObject<ResponseGetParameters>(jsonResult);
-                    return Ok(response);
+                    _response.statusCode = HttpStatusCode.OK;
+                    _response.Result = response;
+                    return Ok(_response);
                 }
                 else
                 {
-                    return BadRequest("Error: " + result.ReasonPhrase + 
-                                      "\nURL: " + result.RequestMessage.RequestUri);
+                    _response.statusCode = HttpStatusCode.BadRequest;
+                    _response.IsSuccess = false;
+                    _response.Result = null;
+                    _response.ErrorMessages.Add("Error: " + result.ReasonPhrase + 
+                                                " ==> URL: " + result.RequestMessage.RequestUri);
+                    return BadRequest(_response);
                 }
             }
             else
             {
-                return BadRequest("Error: " + postResult.ReasonPhrase + 
-                                  "\nURL: " + postResult.RequestMessage.RequestUri);
+                _response.statusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.Result = null;
+                _response.ErrorMessages.Add("Error: " + postResult.ReasonPhrase + 
+                                            " ==> URL: " + postResult.RequestMessage.RequestUri);
+                return BadRequest(_response);
             }
         }
     }

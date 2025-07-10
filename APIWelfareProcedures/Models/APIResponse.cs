@@ -8,7 +8,7 @@ public class APIResponse
 
     public bool IsSuccess { get; set; } = true;
     
-    public List<String> ErrorMessages { get; set; }
+    public List<String> ErrorMessages { get; set; } = new List<string>();
     
     public object Result { get; set; }
 }
