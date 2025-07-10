@@ -1,4 +1,4 @@
-﻿﻿using System.Net;
+﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Text;
 using APIWelfareProcedures.Models;
@@ -36,6 +36,28 @@ namespace APIWelfareProcedures.Controllers
             client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
         }
 
+        private ActionResult<APIResponse> BadStartLimitValues()
+        {
+            _response.statusCode = HttpStatusCode.BadRequest;
+            _response.IsSuccess = false;
+            _response.Result = null;
+            _response.ErrorMessages.Add("Error: El valor de los parámetros start y limit tiene restricciones");
+            _response.ErrorMessages.Add("limit mayor que cero");
+            _response.ErrorMessages.Add("limit < start");
+            _response.ErrorMessages.Add("start >= cero");
+            return BadRequest(_response);
+        }
+
+        private ActionResult<APIResponse> BadRequestResult(string reasonPhrase, string requestUri)
+        {
+            _response.statusCode = HttpStatusCode.BadRequest;
+            _response.IsSuccess = false;
+            _response.Result = null;
+            _response.ErrorMessages.Add("Error: " + reasonPhrase);
+            _response.ErrorMessages.Add("URL: " + requestUri);
+            return BadRequest(_response);
+        }
+
         [HttpPost]
         [Route("getaccesstoken")]
         public async Task<ActionResult<APIResponse>> Post()
@@ -58,15 +80,7 @@ namespace APIWelfareProcedures.Controllers
                 return Ok(_response);
             }
             else
-            {
-                _response.statusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.Result = null;
-                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase);
-                _response.ErrorMessages.Add("URL: " + result.RequestMessage.RequestUri);
-                                            
-                return BadRequest(_response);
-            }
+                return BadRequestResult(result.ReasonPhrase, result.RequestMessage.RequestUri.ToString());
         }
         
         [HttpGet]
@@ -74,16 +88,8 @@ namespace APIWelfareProcedures.Controllers
         public async Task<ActionResult<APIResponse>> Get([FromQuery]int start, [FromQuery]int limit)
         {
             if (limit <= 0 || limit < start || start < 0)
-            {
-                _response.statusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.Result = null;
-                _response.ErrorMessages.Add("Error: El valor de los parámetros start y limit tiene restricciones");
-                _response.ErrorMessages.Add("limit mayor que cero");
-                _response.ErrorMessages.Add("limit < start");
-                _response.ErrorMessages.Add("start >= cero");
-                return BadRequest(_response);
-            }
+                return BadStartLimitValues();
+            
             string get_uri = authSettings.get_uri+ "?start=" + start + "&limit=" + limit;
             ConfigRequestHeaders(get_client);
             var requestContent = new HttpRequestMessage(HttpMethod.Get, get_uri);
@@ -98,30 +104,15 @@ namespace APIWelfareProcedures.Controllers
                 return Ok(_response);
             }
             else
-            {
-                _response.statusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.Result = null;
-                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase);
-                _response.ErrorMessages.Add("URL: " + result.RequestMessage.RequestUri);
-                return BadRequest(_response);
-            }
+                return BadRequestResult(result.ReasonPhrase, result.RequestMessage.RequestUri.ToString());
         }
 
         [HttpGet]
         public async Task<ActionResult<APIResponse>> GetWelfareProcedures([FromQuery] int start, int limit)
         {
             if (limit <= 0 || limit < start || start < 0)
-            {
-                _response.statusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.Result = null;
-                _response.ErrorMessages.Add("Error: El valor de los parámetros start y limit tiene restricciones");
-                _response.ErrorMessages.Add("limit mayor que cero");
-                _response.ErrorMessages.Add("limit < start");
-                _response.ErrorMessages.Add("start >= cero");
-                return BadRequest(_response);
-            }
+                return BadStartLimitValues();
+            
             string post_uri = authSettings.post_uri;
             string bearerToken = authSettings.bearerToken;
             ConfigRequestHeaders(post_client);
@@ -149,24 +140,10 @@ namespace APIWelfareProcedures.Controllers
                     return Ok(_response);
                 }
                 else
-                {
-                    _response.statusCode = HttpStatusCode.BadRequest;
-                    _response.IsSuccess = false;
-                    _response.Result = null;
-                    _response.ErrorMessages.Add("Error: " + result.ReasonPhrase);
-                    _response.ErrorMessages.Add("URL: " + result.RequestMessage.RequestUri);
-                    return BadRequest(_response);
-                }
+                    return BadRequestResult(result.ReasonPhrase, result.RequestMessage.RequestUri.ToString());
             }
             else
-            {
-                _response.statusCode = HttpStatusCode.BadRequest;
-                _response.IsSuccess = false;
-                _response.Result = null;
-                _response.ErrorMessages.Add("Error: " + postResult.ReasonPhrase);
-                _response.ErrorMessages.Add("URL: " + postResult.RequestMessage.RequestUri);
-                return BadRequest(_response);
-            }
+                return BadRequestResult(postResult.ReasonPhrase, postResult.RequestMessage.RequestUri.ToString());
         }
     }
 }
