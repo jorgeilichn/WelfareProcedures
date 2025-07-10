@@ -58,8 +58,9 @@ namespace APIWelfareProcedures.Controllers
                 _response.statusCode = HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 _response.Result = null;
-                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase + 
-                                            " ==> URL: " + result.RequestMessage.RequestUri);
+                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase);
+                _response.ErrorMessages.Add("URL: " + result.RequestMessage.RequestUri);
+                                            
                 return BadRequest(_response);
             }
         }
@@ -87,8 +88,8 @@ namespace APIWelfareProcedures.Controllers
                 _response.statusCode = HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 _response.Result = null;
-                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase + 
-                                            " ==> URL: " + result.RequestMessage.RequestUri);
+                _response.ErrorMessages.Add("Error: " + result.ReasonPhrase);
+                _response.ErrorMessages.Add("URL: " + result.RequestMessage.RequestUri);
                 return BadRequest(_response);
             }
         }
@@ -130,8 +131,8 @@ namespace APIWelfareProcedures.Controllers
                     _response.statusCode = HttpStatusCode.BadRequest;
                     _response.IsSuccess = false;
                     _response.Result = null;
-                    _response.ErrorMessages.Add("Error: " + result.ReasonPhrase + 
-                                                " ==> URL: " + result.RequestMessage.RequestUri);
+                    _response.ErrorMessages.Add("Error: " + result.ReasonPhrase);
+                    _response.ErrorMessages.Add("URL: " + result.RequestMessage.RequestUri);
                     return BadRequest(_response);
                 }
             }
@@ -140,8 +141,8 @@ namespace APIWelfareProcedures.Controllers
                 _response.statusCode = HttpStatusCode.BadRequest;
                 _response.IsSuccess = false;
                 _response.Result = null;
-                _response.ErrorMessages.Add("Error: " + postResult.ReasonPhrase + 
-                                            " ==> URL: " + postResult.RequestMessage.RequestUri);
+                _response.ErrorMessages.Add("Error: " + postResult.ReasonPhrase);
+                _response.ErrorMessages.Add("URL: " + postResult.RequestMessage.RequestUri);
                 return BadRequest(_response);
             }
         }
