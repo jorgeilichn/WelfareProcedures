@@ -30,15 +30,19 @@ namespace APIWelfareProcedures.Controllers
             _response = new APIResponse();
         }
 
+        private void ConfigRequestHeaders(HttpClient client)
+        {
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
+        }
+
         [HttpPost]
         [Route("getaccesstoken")]
         public async Task<ActionResult<APIResponse>> Post()
         {
             string post_uri = authSettings.post_uri;
             string bearerToken = authSettings.bearerToken;
-            post_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            post_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
-                
+            ConfigRequestHeaders(post_client);
             var serializedRequestBody = JsonConvert.SerializeObject(requestBody);
             var requestContent = new HttpRequestMessage(HttpMethod.Post, post_uri);
             requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
@@ -69,9 +73,19 @@ namespace APIWelfareProcedures.Controllers
         [Route("getprocedures")]
         public async Task<ActionResult<APIResponse>> Get([FromQuery]int start, [FromQuery]int limit)
         {
+            if (limit <= 0 || limit < start || start < 0)
+            {
+                _response.statusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.Result = null;
+                _response.ErrorMessages.Add("Error: El valor de los parámetros start y limit tiene restricciones");
+                _response.ErrorMessages.Add("limit mayor que cero");
+                _response.ErrorMessages.Add("limit < start");
+                _response.ErrorMessages.Add("start >= cero");
+                return BadRequest(_response);
+            }
             string get_uri = authSettings.get_uri+ "?start=" + start + "&limit=" + limit;
-            get_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            get_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
+            ConfigRequestHeaders(get_client);
             var requestContent = new HttpRequestMessage(HttpMethod.Get, get_uri);
             requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken); ;
             var result = await get_client.SendAsync(requestContent);
@@ -97,11 +111,20 @@ namespace APIWelfareProcedures.Controllers
         [HttpGet]
         public async Task<ActionResult<APIResponse>> GetWelfareProcedures([FromQuery] int start, int limit)
         {
+            if (limit <= 0 || limit < start || start < 0)
+            {
+                _response.statusCode = HttpStatusCode.BadRequest;
+                _response.IsSuccess = false;
+                _response.Result = null;
+                _response.ErrorMessages.Add("Error: El valor de los parámetros start y limit tiene restricciones");
+                _response.ErrorMessages.Add("limit mayor que cero");
+                _response.ErrorMessages.Add("limit < start");
+                _response.ErrorMessages.Add("start >= cero");
+                return BadRequest(_response);
+            }
             string post_uri = authSettings.post_uri;
             string bearerToken = authSettings.bearerToken;
-            post_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            post_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
-                
+            ConfigRequestHeaders(post_client);
             var serializedRequestBody = JsonConvert.SerializeObject(requestBody);
             var requestPostContent = new HttpRequestMessage(HttpMethod.Post, post_uri);
             requestPostContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
@@ -113,8 +136,7 @@ namespace APIWelfareProcedures.Controllers
                 ResponsePostParameters postResponse = JsonConvert.DeserializeObject<ResponsePostParameters>(jsonPostResult);
                 accessToken = postResponse.access_token;
                 string get_uri = authSettings.get_uri+ "?start=" + start + "&limit=" + limit;
-                get_client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                get_client.DefaultRequestHeaders.TryAddWithoutValidation("Content-Type", "application/json; charset=utf-8 ");
+                ConfigRequestHeaders(get_client);
                 var requestContent = new HttpRequestMessage(HttpMethod.Get, get_uri);
                 requestContent.Headers.Authorization = new AuthenticationHeaderValue("Bearer", accessToken); ;
                 var result = await get_client.SendAsync(requestContent);
